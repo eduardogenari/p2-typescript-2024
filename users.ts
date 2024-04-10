@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 
 export class User {
   constructor(
@@ -40,3 +42,21 @@ export const loadUsers = async (n: number) => {
   }
   return users;
 };
+
+export const loadNews = async (section: string) => {
+  const apiKey = 'AIDCcnBkuVJo81RE4s2pS1mSSCmJWvDH'; 
+  const url = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data; 
+  } catch (error) {
+    console.error('Error fetching news:', error);
+    throw error; 
+  }
+};
+
+const newsData = await loadNews('business');
+console.log(newsData);
+
