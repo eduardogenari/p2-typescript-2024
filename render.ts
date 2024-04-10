@@ -1,24 +1,27 @@
 import { Article } from "./news.js";
 import { writeFile } from "fs/promises";
 
+/*
 const head = (title: string) => `
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
+  <link rel="shortcut icon" href="/imgs/nyt-favicon.png" type="image/x-icon">
   <style>
     body {
       margin: 0;
       padding: 0;
     }
     .article {
-      font-family: sans-serif;
+      font-family: nyt-imperial, serif;
       display: flex;
       flex-direction: row;
       align-items: center;
       padding: .4rem;
       border-bottom: 1px solid #ddd;
+      background-color: red;
     }
     .article img {
       width: 3rem;
@@ -30,10 +33,20 @@ const head = (title: string) => `
       font-weight: bold;
     }
     .article .email {
-      font-family: monospace;
+      font-family: nyt-imperial, serif;
     }
   </style>
 </head>`;
+*/
+
+const head = (title: string) => `
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+  <link rel="shortcut icon" href="/imgs/nyt-favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./styles.css">  </head>`;
 
 
 const articleHead = (title: string) => `
@@ -42,6 +55,7 @@ const articleHead = (title: string) => `
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} - The New York Times</title>  
+  <link rel="stylesheet" href="./detail.css">
   <style></style>
 </head>`;
 

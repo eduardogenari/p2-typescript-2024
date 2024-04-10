@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .article {
+    font-family: nyt-imperial, serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: .4rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .article img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin-right: 0.7rem;
+  }
+  
+  .article .name {
+    font-weight: bold;
+  }
+  
+  .article .email {
+    font-family: nyt-imperial, serif;
+  }
+  
