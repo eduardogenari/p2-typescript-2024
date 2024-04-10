@@ -1,4 +1,4 @@
-import { User } from "./users.js";
+import { Article } from "./news.js";
 
 const head = (title: string) => `
 <head>
@@ -11,7 +11,7 @@ const head = (title: string) => `
       margin: 0;
       padding: 0;
     }
-    .user {
+    .article {
       font-family: sans-serif;
       display: flex;
       flex-direction: row;
@@ -19,41 +19,43 @@ const head = (title: string) => `
       padding: .4rem;
       border-bottom: 1px solid #ddd;
     }
-    .user img {
+    .article img {
       width: 3rem;
       height: 3rem;
       border-radius: 50%;
       margin-right: 0.7rem;
     }
-    .user .name {
+    .article .name {
       font-weight: bold;
     }
-    .user .email {
+    .article .email {
       font-family: monospace;
     }
   </style>
 </head>`;
 
-const renderUsers = (users: Array<User>) => {
+
+const renderNews = (news: Array<Article>) => {
   let html = "";
-  for (const user of users) {
-    html += `<div class="user">
-      <img src="${user.picture.medium}" />
+  for (const article of news) {
+    html += `<div class="article">
+      <img src="${article.multimediaUrl}" />
       <div class="data">
-        <div class="name">${user.fullName}</div>
-        <div class="email">${user.email}</div>
+        <div class="name">${article.title}</div>
+        <div class="email">${article.description}</div>
       </div>
     </div>`;
   }
   return html;
 }
 
-export const render = (users: Array<User>) => {
+
+export const render = (news: Array<Article>) => {
   return `
 <html>
-  ${head("User List")}
+  ${head("News List")}
   <body>
-    ${renderUsers(users)}
+    ${renderNews(news)}
   </body>
 </html>`;
 };
