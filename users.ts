@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 
-
 export class User {
   constructor(
     public gender: "male" | "female",
@@ -33,6 +32,18 @@ export class User {
   }
 }
 
+
+export class New {
+  constructor(
+    public title: string,
+    public description: string,
+    public updatedDate: string,
+    public multimediaUrl?: string // Optional multimedia URL property
+  ) {}
+}
+
+
+
 export const loadUsers = async (n: number) => {
   const response = await fetch(`https://randomuser.me/api?results=${n}`);
   const { results } = (await response.json()) as { results: any[] };
@@ -43,20 +54,39 @@ export const loadUsers = async (n: number) => {
   return users;
 };
 
+
 export const loadNews = async (section: string) => {
   const apiKey = 'AIDCcnBkuVJo81RE4s2pS1mSSCmJWvDH'; 
   const url = `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${apiKey}`;
-
+  
   try {
     const response = await fetch(url);
-    const data = await response.json();
-    return data; 
+    const { results } = (await response.json()) as { results: any[] };
+
+    const news: Array<New> = [];
+    for (const { title, abstract, updated_date, multimedia } of results) {
+      const secondMultimedia = multimedia?.[1];
+
+      const mappedNews = new New(
+        title,
+        abstract,
+        updated_date,
+        secondMultimedia?.url 
+      );
+      news.push(mappedNews);
+    }
+
+    console.log("news aqui");
+    console.log(news);
+    return news; 
+
   } catch (error) {
     console.error('Error fetching news:', error);
     throw error; 
   }
+
 };
 
-const newsData = await loadNews('business');
-console.log(newsData);
 
+const newsData = await loadNews('business');
+console.log("outro");
