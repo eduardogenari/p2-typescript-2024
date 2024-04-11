@@ -3,7 +3,7 @@ import { render, createDetailPage } from "./render.js";
 import { loadNews } from "./news.js";
 
 
-const news = await loadNews('arts');
+const news = await loadNews('world');
 const html = render(news);
 await writeFile('index.html', html);
 
@@ -13,7 +13,7 @@ await createDetailPage(article, i);
 }
 
 /*
-sections for future filter:
+valid NYT sections:
 
 arts
 automobiles

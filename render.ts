@@ -6,6 +6,9 @@ const head = (title: string) => `
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <title>${title}</title>
   <link rel="shortcut icon" href="./imgs/nyt-favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="./styles.css"> 
@@ -17,6 +20,9 @@ const articleHead = (title: string) => `
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <title>The New York Times</title>  
   <link rel="shortcut icon" href="../imgs/nyt-favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="../styles.css"> 
@@ -74,12 +80,17 @@ const renderDetail = (article: Article) => {
   <html>
     ${articleHead(article.title)}
     <body>
+    <header class="logo-small">
+    <img src="../imgs/nyt-logo.png" alt="The New York Times" class="logo">
+    </header>
+    <section>
       <h1>${article.title}</h1>
       <p>${article.description}</p>
       <img src="${article.multimediaUrl}" />
-      <p>${article.caption}</p>
+      <p class="caption">${article.caption}</p>
       <p>${article.copyright}</p>
       <p>${article.description} ${article.description} ${article.description} ${article.description} ${article.description}</p>
+    </section>
     </body>
   </html>`;
 };
