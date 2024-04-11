@@ -6,7 +6,9 @@ export class Article {
     public title: string,
     public description: string,
     public updatedDate: string,
-    public multimediaUrl?: string 
+    public multimediaUrl?: string,
+    public caption?: string,
+    public copyright?: string
   ) {}
 }
 
@@ -22,16 +24,19 @@ export const loadNews = async (section: string) => {
     const news: Array<Article> = [];
     for (const { title, abstract, updated_date, multimedia } of results) {
       const secondMultimedia = multimedia?.[1];
-
+      let caption = secondMultimedia.caption;;
+      let copyright = secondMultimedia.copyright;
+      
       const mappedNews = new Article(
         title,
         abstract,
         updated_date,
-        secondMultimedia?.url 
+        secondMultimedia?.url,
+        caption,
+        copyright
       );
       news.push(mappedNews);
     }
-    console.log(news);
     return news; 
 
   } catch (error) {

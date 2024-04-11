@@ -1,52 +1,15 @@
 import { Article } from "./news.js";
 import { writeFile } from "fs/promises";
 
-/*
 const head = (title: string) => `
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
-  <link rel="shortcut icon" href="/imgs/nyt-favicon.png" type="image/x-icon">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    .article {
-      font-family: nyt-imperial, serif;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: .4rem;
-      border-bottom: 1px solid #ddd;
-      background-color: red;
-    }
-    .article img {
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
-      margin-right: 0.7rem;
-    }
-    .article .name {
-      font-weight: bold;
-    }
-    .article .email {
-      font-family: nyt-imperial, serif;
-    }
-  </style>
+  <link rel="shortcut icon" href="./imgs/nyt-favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./styles.css"> 
 </head>`;
-*/
-
-const head = (title: string) => `
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title}</title>
-  <link rel="shortcut icon" href="/imgs/nyt-favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="./styles.css">  </head>`;
 
 
 const articleHead = (title: string) => `
@@ -54,9 +17,9 @@ const articleHead = (title: string) => `
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} - The New York Times</title>  
-  <link rel="stylesheet" href="./detail.css">
-  <style></style>
+  <title>The New York Times</title>  
+  <link rel="shortcut icon" href="../imgs/nyt-favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../styles.css"> 
 </head>`;
 
 
@@ -64,14 +27,15 @@ const renderNews = (news: Array<Article>, index: number) => {
   let html = "";
   for (let i = 0; i < news.length; i++) {
     const article = news[i];
-    html += `<div class="article" id="article-${i}">
-      <a href="./news/${index}.html">  <img src="${article.multimediaUrl}" />
-      </a>
-      <div class="data">
-        <div class="name">${article.title}</div>
-        <div class="email">${article.description}</div>
+    html += `<a href="./news/${index}.html">  
+      <div class="article" id="article-${i}">
+        <img src="${article.multimediaUrl}" />
+        <div class="data">
+          <div class="title">${article.title}</div>
+          <div class="description">${article.description}</div>
+        </div>
       </div>
-    </div>`;
+    </a>`;
   }
   return html;
 };
@@ -79,17 +43,29 @@ const renderNews = (news: Array<Article>, index: number) => {
 
 export const render = (news: Array<Article>) => {
   let html = "";
+
+  const header = `
+    <header>
+      <img src="./imgs/nyt-logo.png" alt="The New York Times" class="logo">
+    </header>
+  `;
+
   for (let i = 0; i < news.length; i++) {
     const article = news[i];
-    html += renderNews([article], i); // Wrap article in an array
+    html += renderNews([article], i);
   }
+
   return `
-  <html>
-    ${head("The New York Times")}
-    <body>
-      ${html}
-    </body>
-  </html>`;
+    <html>
+      ${head("The New York Times")}
+      <body>
+        ${header}
+        <div class="news-container">
+          ${html}
+        </div>
+      </body>
+    </html>
+  `;
 };
 
 
@@ -101,6 +77,9 @@ const renderDetail = (article: Article) => {
       <h1>${article.title}</h1>
       <p>${article.description}</p>
       <img src="${article.multimediaUrl}" />
+      <p>${article.caption}</p>
+      <p>${article.copyright}</p>
+      <p>${article.description} ${article.description} ${article.description} ${article.description} ${article.description}</p>
     </body>
   </html>`;
 };

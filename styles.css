@@ -1,29 +1,50 @@
 body {
     margin: 0;
     padding: 0;
-  }
-  
-  .article {
-    font-family: nyt-imperial, serif;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: .4rem;
-    border-bottom: 1px solid #ddd;
+    flex-direction: column;
+    align-items: center; 
   }
+
+header {
+  width: 750px;
+  padding: 1.25em;
+  background-color: white;
+}
+
+header img {
+  width: 750px;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
   
-  .article img {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    margin-right: 0.7rem;
-  }
-  
-  .article .name {
-    font-weight: bold;
-  }
-  
-  .article .email {
-    font-family: nyt-imperial, serif;
-  }
-  
+.article {
+  font-family: 'nyt-imperial', serif;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  padding: 1.25em;
+  border-top: 1px solid black;
+  max-width: 750px;
+}
+
+.article img {
+  width: 250px;
+  margin-right: 1.25em;
+}
+
+.article .title {
+  color: black;
+  font-weight: bold;
+  font-size: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.article .description {
+  color: rgb(100, 100, 100);
+  font-family: 'nyt-imperial', serif;
+}
+
+a:link {
+  text-decoration: none;
+}
