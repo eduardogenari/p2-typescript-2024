@@ -2,6 +2,10 @@
 
 [Link Behance](https://www.behance.net/gallery/196025521/p2-typescript-2024)
 
+# Link GitHub Pages
+
+[Link GitHub Pages](https://eduardogenari.github.io/p2-typescript-2024/)
+
 # Generador de HTML en Typescript
 
 Se trata de hacer un programa en Typescript que genera una página en HTML a partir de datos leídos en JSON. Se proporciona un ejemplo sencillo, con una sola página, a modo de guía. 
